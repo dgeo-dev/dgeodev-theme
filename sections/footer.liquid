@@ -1,0 +1,120 @@
+
+<footer class="footer"> 
+  
+
+  
+
+
+  <div class="footer-content">
+    {% for block in section.blocks %} 
+      <div class="footer-item">
+      {% case block.type %}
+
+      {% when 'link_list' %}
+      <h3>{{ block.settings.title }}</h3>
+
+      <ul class="footer-links">
+        {% assign footer_linkList = block.settings.menu %}
+        {% for link in linklists[footer_linkList].links %}
+        <li class="link-item"><a href="{{ link.url }}">{{ link.title }}</a> </li>
+        {% endfor %}
+      </ul>
+
+       
+      
+      {% when 'text' %}
+      <h3>{{ block.settings.title }}</h3> 
+      <div class="rte">
+      {{ block.settings.text }}
+      </div>
+      
+      {% when 'newsletter' %}
+       <h3>{{ block.settings.title }}</h3>
+
+       {% form 'customer' %}
+
+        <input type="hidden" name="contact[tags]" value="newsletter" > 
+
+        <input type="email" name="contact[email]" id="Email">
+
+        <button type="submit">S'inscrire</button>
+
+       {% endform %}
+      
+      {% else %}
+      
+      {% endcase %}  
+      </div>
+
+    {% endfor %}        
+  </div>
+
+  <div class="footer-copyright">{{ section.settings.copy }}</div>
+
+</footer>
+
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+        {
+          "type": "text",
+          "id": "copy",
+          "label": "copy",
+          "default": "copy"
+        }        
+      ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type":"link_list",
+      "name": "menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "title",
+          "default": "Liens rapides"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "menu",
+          "default": "footer"
+        }
+      ]
+    },
+    {
+      "type":"text",
+      "name": "texte",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "title",
+          "default": "Parlez de votre entreprise"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "texte",
+          "default": "<p>Votre texte</p>"
+        }
+      ]
+    },
+    {
+      "type":"newsletter",
+      "name": "inscription",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "title",
+          "default": "Newsletter"
+        }        
+      ]
+    }
+  ]
+}
+{% endschema %}

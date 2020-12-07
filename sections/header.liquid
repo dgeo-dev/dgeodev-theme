@@ -1,0 +1,55 @@
+<header class="header">
+  
+  <nav class="header-navbar">
+    <button class="navbar-toggler" onclick=openMenu();><i class="fas fa-bars"></i></button>
+    <ul class="navbar">
+      {% for link in linklists.main-menu.links %}
+      <li class="navbar-item"><a href="{{ link.url }}">{{ link.title }}</a> </li>
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <div class="header-brand">
+    {% if section.settings.logo %}
+    <img src="{{ section.settings.logo | img_url: '300x300' }}" alt="{{ shop.name }}">
+    {% else %}
+    {{ shop.name }}
+    {% endif %}
+  </div>
+
+  <div class="header-icons">
+    <button onclick=searchBox();>
+      <i class="fas fa-search"></i>
+    </button>
+    <a href="/cart">
+      <i class="fas fa-shopping-bag"></i>
+    </a>
+  </div>
+
+  <div id="searchbox" class="searchbox-content">
+    <form action="/search" class="search-bar" role="search">
+      <div class="search-group">
+        <input type="text" class="search-input" name="q" value="{{ search.terms | escape }}" placeholder="Recherche">
+        <button class="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </form>
+    <button onclick=searchBox(); class="btn-close"><i class="fas fa-times"></i></button>
+  </div>
+
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class":"section-header",
+  "settings": [
+    {
+      "type":"image_picker",
+      "id": "logo",
+      "label": "logo"
+    }
+  ]
+}
+{% endschema %}
