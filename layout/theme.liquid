@@ -8,27 +8,22 @@
   <link rel="canonical" href="{{ canonical_url }}">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   {{ content_for_header }} <!-- Header hook for plugins -->
-
-
-  <script src="https://kit.fontawesome.com/428c13fb1f.js" crossorigin="anonymous"></script>
+  
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+  
+  <script src="https://kit.fontawesome.com/428c13fb1f.js" crossorigin="anonymous"></script>
   <script src="{{ 'theme.js' | asset_url }}" defer></script>
-
 
 </head>
 <body>
 
-  {% section 'header' %} 
+  {% section 'header' %}   
 
-  <a href="/cart">cart</a>
-
-  
-
-  <main role="main">
-    {{ content_for_layout }}
+  <main role="main" class="main-content">
+    {{ content_for_layout }}  
   </main>
 
-
-  {% section 'footer' %} 
+  {% section 'footer' %}  
+  
 </body>
 </html>

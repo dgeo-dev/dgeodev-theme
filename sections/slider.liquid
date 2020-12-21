@@ -1,0 +1,61 @@
+
+<div class="splide">
+  <div class="splide__track">
+    <ul class="splide__list">      
+      {% for block in section.blocks %} 
+      <li class="splide__slide"><img src="{{ block.settings.slide | img_url: '1980x'}}" alt="{{ block.settings.slide.alt }}">
+        <div class="splide__content">
+          <h3 class="splide__title">{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+          {% if block.settings.link %}
+          <a href="{{ block.settings.link }}" class="splide__btn">En savoir plus</a>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>    
+
+{% schema %}
+{
+  "name": "Slider",  
+  "max_blocks": 9,
+  "blocks": [
+    {
+      "type":"image",
+      "name": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide",
+          "label": "Image"          
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "title",
+          "default": "Titre du slide"
+        },  
+        {
+          "type": "text",
+          "id": "text",
+          "label": "texte",
+          "default": "Texte du slide"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "lien"      
+        }         
+      ]
+    }    
+  ],
+  "presets": [
+    {      
+      "name": "Slider",
+      "category": "Média"
+    }
+  ]
+}
+{% endschema %}

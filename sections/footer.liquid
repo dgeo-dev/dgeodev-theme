@@ -1,10 +1,6 @@
 
 <footer class="footer"> 
   
-
-  
-
-
   <div class="footer-content">
     {% for block in section.blocks %} 
       <div class="footer-item">
@@ -19,8 +15,6 @@
         <li class="link-item"><a href="{{ link.url }}">{{ link.title }}</a> </li>
         {% endfor %}
       </ul>
-
-       
       
       {% when 'text' %}
       <h3>{{ block.settings.title }}</h3> 

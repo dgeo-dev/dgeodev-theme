@@ -11,7 +11,7 @@
 
   <div class="header-brand">
     {% if section.settings.logo %}
-    <img src="{{ section.settings.logo | img_url: '300x300' }}" alt="{{ shop.name }}">
+    <a href="/"><img src="{{ section.settings.logo | img_url: '300x300' }}" alt="{{ shop.name }}"></a>
     {% else %}
     {{ shop.name }}
     {% endif %}
@@ -50,6 +50,6 @@
       "id": "logo",
       "label": "logo"
     }
-  ]
+  ]  
 }
 {% endschema %}

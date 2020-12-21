@@ -1,0 +1,91 @@
+
+<div class="container">
+
+  <h2 class="section-title">{{ section.settings.section-title }}</h2>
+  
+
+  {% for block in section.blocks %} 
+  <div class="feature-row align-{{ block.settings.alignement }}">
+    <div class="feature-item feature-item__img ">      
+      <img src="{{ block.settings.image | img_url: '900x'}}" alt="{{ block.settings.image.alt }}">
+    </div>
+    
+    <div class="feature-item feature-item__text ">
+      <div>
+        <h3>{{ block.settings.title }}</h3>
+        <div class="rte">
+          {{ block.settings.text }}
+        </div>
+        <a href="{{ block.settings.link }}" class="btn">En savoir plus</a>
+      </div> 
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Image avec texte", 
+  "settings": [   
+    {
+      "type": "text",
+      "id": "section-title",
+      "label": "titre de la section",
+      "default": "titre de la section"
+    }  
+  ],
+  "max_blocks": 8,
+  "blocks": [
+    {
+      "type":"image",
+      "name": "Image et texte",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"          
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "title",
+          "default": "Titre du bloc"
+        },  
+        {
+          "type": "text",
+          "id": "text",
+          "label": "texte",
+          "default": "Texte du bloc"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "lien"      
+        },
+        {
+          "type": "select",
+          "id": "alignement",
+          "label": "alignement de l'image",
+          "options": [
+            {              
+              "value": "left",
+              "label": "left"
+            },
+            {              
+              "value": "right",
+              "label": "right"
+            }
+          ],
+          "default": "left"          
+       } 
+      ]
+    }    
+  ],
+  "presets": [
+    {      
+      "name": "Image avec texte",
+      "category": "Contenu"
+    }
+  ]
+}
+{% endschema %}
