@@ -1,0 +1,49 @@
+<div class="container">
+
+  <h2 class="section-title">{{ section.settings.section-title }}</h2>  
+
+  <div class="grid">
+
+  {% assign featured-row = section.settings.featured_collection %}
+
+  {% for product in collections[featured-row].products limit: 4 %} 
+
+    <div class="grid-item">
+      <div class="product">
+        <a href="{{ product.url }}">
+          <img class="product-image" src="{{ product.featured_image | img_url: '600x'}}" alt="{{ product.featured_image.alt }}">              
+          <h3 class="product-title">{{ product.title }}</h3>  
+          <p class="product-price">{{ product.price | money }}</p>
+        </a>
+      </div>
+    </div>
+
+  {% endfor %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name":"Collection en vedette",     
+  "settings":[
+    {
+        "type":"text",
+        "id":"section-title",
+        "label":"titre de la section",
+        "default":"titre de la section"
+    },
+    {
+      "type":"collection",
+      "id":"featured_collection",
+      "label":"Collection en vedette"
+    }
+  ],
+  "presets":[
+    {
+      "name":"Collection en vedette",
+      "category":"Collection"
+    }
+  ]
+}
+{% endschema %}

@@ -2,53 +2,52 @@
 
   <h2 class="section-title">{{ section.settings.section-title }}</h2>
 
-  <div class="collection-list">  
+  <div class="collection-list">
 
-    {% for block in section.blocks %} 
-      <div class="collection-item">      
-        {% assign collection = collections[block.settings.feature_collection] %}
-        <a href="{{ collection.url }}">
+    {% for block in section.blocks %}
+    <div class="collection-item">
+      {% assign collection = collections[block.settings.feature_collection] %}
+      <a href="{{ collection.url }}">
         <img src="{{ collection.image | img_url: '900x'}}" alt="{{ collection.image.alt }}">
-        <h3 class="collection-title">{{ collection.title }}</h3> 
+        <h3 class="collection-title">{{ collection.title }}</h3>
       </a>
-      </div>
+    </div>
     {% endfor %}
 
   </div>
 
 </div>
 
-
 {% schema %}
 {
-  "name": "Liste des Collections", 
-  "settings": [   
-    {
-      "type": "text",
-      "id": "section-title",
-      "label": "titre de la section",
-      "default": "titre de la section"
-    }  
+  "name":"Liste des Collections",
+  "settings":[
+     {
+        "type":"text",
+        "id":"section-title",
+        "label":"titre de la section",
+        "default":"titre de la section"
+     }
   ],
-  "max_blocks": 4,
-  "blocks": [
-    {
-      "type":"collection",
-      "name": "Collection",
-      "settings": [
-        {
-          "type": "collection",
-          "id": "feature_collection",
-          "label": "Collection en vedette"
-        }        
-      ]
-    }    
+  "max_blocks":4,
+  "blocks":[
+     {
+        "type":"collection",
+        "name":"Collection",
+        "settings":[
+           {
+              "type":"collection",
+              "id":"feature_collection",
+              "label":"Collection en vedette"
+           }
+        ]
+     }
   ],
-  "presets": [
-    {      
-      "name": "Liste des collections",
-      "category": "Collection"
-    }
+  "presets":[
+     {
+        "name":"Liste des collections",
+        "category":"Collection"
+     }
   ]
 }
 {% endschema %}

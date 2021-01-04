@@ -218,6 +218,40 @@ iframe {
   
 }
 
+// featured-collection
+
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; 
+  .grid-item {
+    padding: $spacing;
+    flex:1 0 50%;
+  }
+}
+@media screen and (min-width:$screen-medium) {
+  .grid {
+    .grid-item {    
+      flex:1 0 25%; 
+    }
+  }
+}
+
+.product {
+  .product-image {
+    margin-bottom: $spacing;
+  }
+  .product-title {
+    font-size: 1.2rem;
+  }
+  a {
+    color:$color-primary;
+  }
+}
+
+
+
 .footer {
   background-color: #EEE;
 }
