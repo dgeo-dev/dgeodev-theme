@@ -24,12 +24,60 @@ function searchBox() {
   document.getElementById('searchbox').classList.toggle('show');
 }
 
-
 /* slider */
 
-new Splide( '.splide', {
-  autoplay: true,
-  interval: 3000,
-  pagination: false,
-  rewind: true
-}).mount();
+if(document.querySelector('.splide')) {
+document.addEventListener( 'DOMContentLoaded', function () {
+
+  // slider home
+  new Splide( '.splide', {
+    autoplay: true,
+    interval: 3000,
+    pagination: false,
+    rewind: true
+  }).mount();
+
+  // slider product
+	let secondarySlider = new Splide( '#secondary-slider', {
+		fixedWidth  : 100,
+		height      : 100,
+		gap         : 10,
+		cover       : true,
+		isNavigation: true,
+    focus       : 0,
+    
+		breakpoints : {
+			'600': {
+				fixedWidth: 60,
+				height    : 60,
+			}
+		},
+	} ).mount();
+	
+	let primarySlider = new Splide( '#primary-slider', {
+		type       : 'fade',
+		heightRatio: 1,
+		pagination : false,
+		arrows     : false,
+		cover      : true,
+	} ); // do not call mount() here.
+	
+	primarySlider.sync( secondarySlider ).mount();
+} );
+
+}
+
+// product 
+if(document.querySelector('.featured-product')) {
+
+  const productPrice = document.querySelector('.product-price');
+  const productSelector = document.querySelector('.product-variants');
+
+  productSelector.addEventListener('change', function(event){
+    let select = event.target;
+    let selectedOption = select.options[select.selectedIndex];
+    let variantPrice = selectedOption.getAttribute('data-price');  
+    productPrice.textContent = variantPrice;
+  })
+
+}

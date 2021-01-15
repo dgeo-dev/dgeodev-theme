@@ -59,6 +59,13 @@ a {
 p {
   margin-bottom: $spacing;
 }
+select { min-width: 260px; }
+select, input[type=number] {
+  padding:8px 5px; 
+}
+input[type=number] {
+  max-width:60px;
+}
 
 img { max-width:100%; }
 
@@ -72,6 +79,17 @@ button:hover {
   background:rgb(0, 0, 0);  
   color:rgb(255, 255, 255);
   text-transform: uppercase;
+  border:none;
+  font-size:1.1rem;
+}
+.add_to_cart {
+  @extend .btn;
+  padding: $spacing / 1.5;
+  background-color: rgb(15, 160, 15);
+  i {
+    font-size:1rem;
+    margin-right:7px;
+  }
 }
 
 iframe {
@@ -200,6 +218,10 @@ iframe {
     background:#FFF;  
     color:#333;
   }
+  
+}
+.splide__pagination {
+  display:none;
 }
 
 // image with text
@@ -222,23 +244,38 @@ iframe {
 
 .grid {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; 
   flex-wrap: wrap; 
   .grid-item {
+
+    width:100%;
     padding: $spacing;
-    flex:1 0 50%;
+    .featured-collection & {
+      flex:1 0 50%;
+    }
   }
 }
 @media screen and (min-width:$screen-medium) {
   .grid {
-    .grid-item {    
-      flex:1 0 25%; 
+    .grid-item {  
+      .featured-product & {
+        flex:1 0 50%;  
+      }
+      .featured-collection & { 
+        flex:1 0 25%; 
+      }
     }
   }
 }
 
 .product {
+  .product-images {
+    
+    .splide-secondary {
+      padding:$spacing $spacing * 2.5 0 $spacing * 2.5;
+    }
+  }
+  
   .product-image {
     margin-bottom: $spacing;
   }
@@ -247,6 +284,12 @@ iframe {
   }
   a {
     color:$color-primary;
+  }
+  .product-price {
+    font-size: 1.2rem;
+  }
+  .product-variants, .product-quantity, .add_to_cart {
+    margin-bottom:$spacing;
   }
 }
 
