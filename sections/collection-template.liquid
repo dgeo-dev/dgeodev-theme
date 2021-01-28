@@ -1,0 +1,44 @@
+<div class="container">
+  {%-  assign limit = section.settings.pagination -%}
+  {% paginate collection.products by limit %}
+  <h1 class="title">{{ collection.title }}</h1>
+
+  <div class="grid">
+  {% for product in collection.products %}  
+   
+
+      <div class="grid-item">
+        <div class="product">
+          <a href="{{ product.url | without: collection }}">
+            <img class="product-image" src="{{ product.featured_image | img_url: '600x'}}" alt="{{ product.featured_image.alt }}">              
+            <h3 class="product-title">{{ product.title }}</h3>  
+            <p class="product-price">{{ product.price | money }}</p>
+          </a>
+        </div>
+      </div>
+     
+    
+  {% else %}
+    <p>no matches</p>
+  {% endfor %}
+  </div>
+  {% if paginate.pages > 1 %}
+    {{ paginate | default_pagination }}
+  {% endif %}
+{% endpaginate %}
+
+</div>
+{% schema %}
+{
+  "name":"Collection", 
+  "class":"collection",    
+  "settings":[
+    {
+        "type":"text",
+        "id":"pagination",
+        "label":"Nombre de produits par page",
+        "default":"6"
+    }    
+  ]
+}
+{% endschema %}

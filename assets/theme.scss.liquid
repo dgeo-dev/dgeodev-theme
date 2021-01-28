@@ -21,7 +21,6 @@ $screen-xlarge: 1200px;
 } 
 
 // structure
-
 .container {
   padding:$spacing;
   max-width:1200px;
@@ -93,6 +92,14 @@ button:hover {
   }
 }
 
+@media screen and (min-width:$screen-medium) {
+  .btn {
+    padding:$spacing * 1.3;
+    font-size:$font-size * 1.3;
+  }
+  
+}
+
 iframe {
   width:100%;
   height:100vh;
@@ -103,6 +110,45 @@ iframe {
   border:1px solid red;
   padding:$spacing;
   margin-bottom: $spacing;
+}
+
+// titles
+.title {
+  text-align: center;
+}
+
+@media screen and (min-width:$screen-medium) {
+  .title {
+    text-align: left;
+  }
+}
+
+// grids
+.grid {
+  display: flex;
+  justify-content: center; 
+  flex-wrap: wrap; 
+  .grid-item {
+
+    width:100%;
+    padding: $spacing;
+    .collection & {
+      text-align: center;
+      flex:1 0 50%;
+    }
+  }
+}
+@media screen and (min-width:$screen-medium) {
+  .grid {
+    .grid-item {  
+      .featured-product & {
+        flex:1 0 50%;  
+      }
+      .collection & { 
+        flex:1 0 25%; 
+      }
+    }
+  }
 }
 
 .header {
@@ -166,6 +212,25 @@ iframe {
     cursor: pointer;
   }
 }
+.navbar-toggler {
+  display: none;
+}
+@media screen and (min-width:$screen-medium) {
+  .navbar {
+    position: relative;
+    left:0;
+    top:auto;
+    height: auto;
+    visibility: initial;
+    transition:none;
+    width: 100%;
+    .navbar-item {
+      display: inline-flex;
+      padding:10px;      
+    }
+  }  
+}  
+
 .searchbox-content {
   display:none;
   position: absolute; 
@@ -231,11 +296,48 @@ iframe {
 .splide__pagination {
   display:none;
 }
+@media screen and (min-width:$screen-medium) {
+  .splide__content {      
+    font-size:$font-size * 1.3; 
+    .splide__title { 
+      font-size:$font-size * 3;
+    }
+    .splide__btn { 
+      padding:$spacing / 1.5 $spacing;
+    }
+  }
+}
 
 // image with text
 .feature-item {
   padding:$spacing;
   text-align: center;
+}
+@media screen and (min-width:$screen-medium) {
+  .feature-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  .feature-item {
+    flex:1 0 50%;
+    display: flex;
+    justify-content: center;   
+    flex-direction: column; 
+  }
+  .feature-item__img {
+    order:1;    
+    .align-right & {
+      order:2;
+    }
+  }
+  .feature-item__text {
+    order:2;
+    .align-right & {
+      order:1;
+    }
+  }
 }
 
 // collection-list
@@ -244,40 +346,20 @@ iframe {
 }
 .collection-title {
   text-align: center;
-  padding:$spacing;
-  
-}
-
-// featured-collection
-
-.grid {
-  display: flex;
-  justify-content: center; 
-  flex-wrap: wrap; 
-  .grid-item {
-
-    width:100%;
-    padding: $spacing;
-    .featured-collection & {
-      flex:1 0 50%;
-    }
-  }
+  padding:$spacing;  
 }
 @media screen and (min-width:$screen-medium) {
-  .grid {
-    .grid-item {  
-      .featured-product & {
-        flex:1 0 50%;  
-      }
-      .featured-collection & { 
-        flex:1 0 25%; 
-      }
-    }
+  .collection-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .collection-item {
+    padding:$spacing;
   }
 }
 
 // pages
-
 .breadcrumb {
   display:none;
 }
@@ -300,8 +382,7 @@ iframe {
   }
   .btn {
     padding:$spacing;
-  }
-  
+  }  
 }
 
 .product {
@@ -337,7 +418,6 @@ iframe {
   .link-item {
     padding:5px 0;
   }
-
 }
 .footer-copyright {
   text-align: center; 
@@ -345,74 +425,6 @@ iframe {
 }
 
 @media screen and (min-width:$screen-medium) {
-  .btn {
-    padding:$spacing * 1.3;
-    font-size:$font-size * 1.3;
-  }
-  .navbar-toggler {
-    display: none;
-  }
-  .navbar {
-    position: relative;
-    left:0;
-    top:auto;
-    height: auto;
-    visibility: initial;
-    transition:none;
-    width: 100%;
-    .navbar-item {
-      display: inline-flex;
-      padding:10px;      
-    }
-  }
-  // slider
-  .splide__content {
-    
-      font-size:$font-size * 1.3; 
-    
-    .splide__title { 
-      font-size:$font-size * 3;
-    }
-    .splide__btn { 
-      padding:$spacing / 1.5 $spacing;
-    }
-  }
-  // image with text
-  .feature-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-  }
-  .feature-item {
-    flex:1 0 50%;
-    display: flex;
-    justify-content: center;   
-    flex-direction: column; 
-  }
-  .feature-item__img {
-    order:1;    
-    .align-right & {
-      order:2;
-    }
-  }
-  .feature-item__text {
-    order:2;
-    .align-right & {
-      order:1;
-    }
-  }
-  // collection list
-  .collection-list {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .collection-item {
-    padding:$spacing;
-  }
-
-  // footer
   .footer-content {
     display:flex; 
     flex-wrap: wrap;
@@ -424,3 +436,5 @@ iframe {
     flex:1 0 33.33%; 
   }
 }
+
+
