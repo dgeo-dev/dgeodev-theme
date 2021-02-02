@@ -1,0 +1,67 @@
+<div class="container">
+
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+
+<div class="product">
+  <div class="grid">  
+    <div class="grid-item">   
+      <div class="product-images">
+        <div id="primary-slider" class="splide splide-primary">
+          <div class="splide__track">
+            <ul class="splide__list">              
+                {% for image in product.images %}
+                <li class="splide__slide">
+                  <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}">
+                </li>
+                {% endfor %}             
+            </ul>
+          </div>
+        </div>
+        <div id="secondary-slider" class="splide splide-secondary">
+          <div class="splide__track">
+            <ul class="splide__list">              
+                {% for image in product.images %}
+                <li class="splide__slide">
+                  <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+                </li>
+                {% endfor %}             
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="grid-item"> 
+      <div class="product-content">
+        <h3 class="product-title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+        <p class="product-price">{{ current_variant.price | money }}</p>
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="product-form">
+        <select name="id" id="productSelect" class="product-variants">
+          {% for variant in product.variants %}
+            {% if variant.available %}
+              <option data-price="{{ variant.price | money }}" value="{{ variant.id }}">
+                {{ variant.title }}
+              </option>
+            {% else %}
+              <option disabled="disabled">
+                {{ variant.title }} - sold out
+              </option>
+            {% endif %}
+          {% endfor %}
+        </select>
+        
+        <div class="product-quantity">      
+          <label for="Quantity">Quantité</label>
+          <input type="number" id="Quantity" name="quantity" value="1" min="1">
+        </div>
+        <button type="submit" name="add" id="AddToCart" class="add_to_cart">
+          <i class="fas fa-shopping-cart"></i> Ajouter au panier</button>
+      </form>
+      <div class="rte">{{ product.description }}</div> 
+      </div>
+    </div>
+  </div>
+</div>
+

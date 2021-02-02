@@ -26,16 +26,19 @@ function searchBox() {
 
 /* slider */
 
-if(document.querySelector('.splide')) {
-document.addEventListener( 'DOMContentLoaded', function () {
 
-  // slider home
-  new Splide( '.splide', {
-    autoplay: true,
-    interval: 3000,
-    pagination: false,
-    rewind: true
-  }).mount();
+document.addEventListener( 'DOMContentLoaded', function () {
+  if(document.querySelector('.slideshow')) {
+    // slider home
+    new Splide( '.slideshow', {
+      autoplay: true,
+      interval: 3000,
+      pagination: false,
+      
+      rewind: true
+    }).mount();
+
+  }
 
   // slider product
 	let secondarySlider = new Splide( '#secondary-slider', {
@@ -65,10 +68,10 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	primarySlider.sync( secondarySlider ).mount();
 } );
 
-}
+
 
 // product 
-if(document.querySelector('.featured-product')) {
+if(document.querySelector('.product')) {
 
   const productPrice = document.querySelector('.product-price');
   const productSelector = document.querySelector('.product-variants');
