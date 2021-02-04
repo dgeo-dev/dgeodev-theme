@@ -66,7 +66,9 @@ select, input[type=number] {
 input[type=number] {
   max-width:60px;
 }
-
+hr {
+  margin:$spacing * 2 auto;
+}
 img { max-width:100%; }
 
 button:hover {
@@ -389,6 +391,24 @@ iframe {
   } 
 }
 
+.comment {
+  padding:$spacing;
+  margin-bottom:$spacing;
+  border:1px solid #DDD;
+}
+.comment-form {
+  display: flex;  
+  flex-direction: column;
+  input, textarea {
+    padding:$spacing / 2;
+    margin:$spacing / 2 0 $spacing 0;
+  }
+  
+  textarea {
+    margin-bottom:$spacing;
+  }
+}
+
 .product {
   .product-images {
     
@@ -411,6 +431,24 @@ iframe {
   }
   .product-variants, .product-quantity, .add_to_cart {
     margin-bottom:$spacing;
+  }
+}
+
+// blog et articles
+.article {
+  .article-meta {
+    color:#666;
+    font-style: italic;
+  }
+}
+
+.paginate {
+  .page {
+    padding:10px 15px;
+    border:1px solid #DDD;
+    &.current {
+      border:1px solid #666;
+    }
   }
 }
 

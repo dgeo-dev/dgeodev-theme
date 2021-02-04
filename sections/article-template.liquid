@@ -1,0 +1,50 @@
+{% assign number_of_comments = article.comments_count %}
+{% if comment and comment.created_at %}
+  {% assign number_of_comments = article.comments_count %}
+{% endif %}
+<div class="container">
+  <div class="article">
+  <img src="{{ article.image.src | img_url: 'original' }}" alt="{{ article.image.alt | escape }}">
+    <h1>{{ article.title }}</h1>
+    
+    <p class="article-meta">Publié par: {{ article.author }} le: {{ article.published_at | date: "%d/%m/%Y" }}</p>
+
+    <div class="rte">{{ article.content }}</div>
+
+    <hr>
+
+    <div class="comments">
+    {% if blog.comments_enabled? %}
+      <h2>{{ number_of_comments }} commentaires</h2>
+      {% paginate article.comments by 5 %}
+        {% for comment in article.comments %}
+          <div class="comment">
+            <div>{{ comment.content }}</div>
+            
+            <p class="comment-meta">Publié par: {{ comment.author }} le: {{ comment.created_at | date: "%d/%m/%Y" }}</p>
+          </div>
+        {% endfor %}
+        {% if paginate.pages > 1 %}
+          {{ paginate | default_pagination }}
+        {% endif %}
+      {% endpaginate %}
+      
+      <h3>Postez votre avis sur cet article</h3>
+        {% form 'new_comment', article %}
+          {{ form.errors | default_errors }}
+          <label for="CommentAuthor">Nom</label>
+          <input type="text" name="comment[author]" id="CommentAuthor" placeholder="Nom" value="{{ form.author }}" autocapitalize="words">
+
+          <label for="CommentEmail">Email</label>
+          <input type="email" name="comment[email]" id="CommentEmail" placeholder="Email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+
+          <label for="CommentBody">Commentaire</label>
+          <textarea name="comment[body]" id="CommentBody" placeholder="Commentaire">{{ form.body }}</textarea>
+
+          <input type="submit" value="Envoyer" class="btn">
+        {% endform %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
