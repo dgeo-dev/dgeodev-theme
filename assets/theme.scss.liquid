@@ -83,9 +83,16 @@ button:hover {
   text-transform: uppercase;
   border:none;
   font-size:1.1rem;
-  cursor: pointer;  
+  cursor: pointer; 
+  border-radius: 3px; 
 }
-.add_to_cart {
+.btn-secondary {
+  text-transform: initial;
+  background:#EEE;
+  color:$color-primary;
+  font-size:1rem;
+}
+.add_to_cart, .btn-primary {
   @extend .btn;
   
   background-color: rgb(15, 160, 15);
@@ -210,9 +217,23 @@ iframe {
   display: flex;
   justify-content: flex-end;
   a, button {
+    position: relative;
     padding:10px;
     margin-left:2px;
     cursor: pointer;
+  }
+  .cart-count {
+    position: absolute;
+    right: 3px;
+    top:3px;
+    background:rgba(255,0,0,0.7);
+    color:#FFF;
+    display: inline-block;  
+    width: 20px; 
+    height: 20px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 100%;
   }
 }
 
@@ -442,7 +463,33 @@ iframe {
   }
 }
 
+.cart-form {
+  .cart-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .cart-item {
+    padding:$spacing $spacing $spacing 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cart-item--title {
+    padding: $spacing;
+  }
+  .cart-subtotal {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    .btn {
+      margin-bottom: $spacing;
+    }
+  }
+  
+}
+
 .paginate {
+  padding:10px 0;
   .page {
     padding:10px 15px;
     border:1px solid #DDD;

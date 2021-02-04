@@ -23,6 +23,7 @@
     </button>
     <a href="/cart">
       <i class="fas fa-shopping-bag"></i>
+      {% if cart.item_count > 0 %}<span class="cart-count">{{ cart.item_count }}</span>{% endif %}
     </a>
   </div>
 
