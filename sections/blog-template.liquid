@@ -1,28 +1,26 @@
-{% paginate blog.articles by 2 %}
 <div class="container">
-
-<h1>{{ blog.title }}</h1>
-<div class="artiles">
-  {% for article in blog.articles %}
-    <div class="article">
-      <h2 class="article-title">{{ article.title }}</h2>
-      <p class="article-meta">Publié par: {{ article.author }} le: {{ article.published_at | date: "%d/%m/%Y" }}</p>
-      <div class="rte">
-        {% if article.excerpt.size > 0 %}
-          {{ article.excerpt }}
-        {% else %}
-          <p>{{ article.content | strip_html | truncatewords: 100 }}</p>
-        {% endif %}
+  {% paginate blog.articles by 9 %}
+  <h1>{{ blog.title }}</h1>
+  <div class="artiles">
+    {% for article in blog.articles %}
+      <div class="article">
+        <h2 class="article-title">{{ article.title }}</h2>
+        <p class="article-meta">Publié par: {{ article.author }} le: {{ article.published_at | date: "%d/%m/%Y" }}</p>
+        <div class="rte">
+          {% if article.excerpt.size > 0 %}
+            {{ article.excerpt }}
+          {% else %}
+            <p>{{ article.content | strip_html | truncatewords: 100 }}</p>
+          {% endif %}
+        </div>
+        <p><a href="{{ article.url }}">Lire la suite...</a></p>
       </div>
-      <p><a href="{{ article.url }}">Lire la suite...</a></p>
-    </div>
-  {% endfor %}
-</div>
-<div class="paginate">
-{% if paginate.pages > 1 %}
-  {{ paginate | default_pagination }}
-{% endif %}
-</div>
-{% endpaginate %}
-
+    {% endfor %}
+  </div>
+  <div class="paginate">
+  {% if paginate.pages > 1 %}
+    {{ paginate | default_pagination }}
+  {% endif %}
+  </div>
+  {% endpaginate %}
 </div>
