@@ -21,7 +21,7 @@
           <div class="comment">
             <div>{{ comment.content }}</div>
             
-            <p class="comment-meta">Publié par: {{ comment.author }} le: {{ comment.created_at | date: "%d/%m/%Y" }}</p>
+            <p class="article-meta">Publié par: {{ comment.author }} le: {{ comment.created_at | date: "%d/%m/%Y" }}</p>
           </div>
         {% endfor %}
         {% if paginate.pages > 1 %}
