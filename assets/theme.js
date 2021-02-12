@@ -71,7 +71,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 
 // product 
-if(document.querySelector('.product')) {
+if(document.querySelector('.product-form')) {
 
   const productPrice = document.querySelector('.product-price');
   const productSelector = document.querySelector('.product-variants');

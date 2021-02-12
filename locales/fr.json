@@ -1,0 +1,12 @@
+{
+  "general": {
+    "404": {
+      "title": "Rien trouvé",
+      "subtext_html": "Cette page n'est pas disponible..."
+    },
+    "search": {
+      "search_text": "Rechercher",
+      "no_result": "Pas de résultats"
+    }
+  }  
+}
