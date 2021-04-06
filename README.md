@@ -10,6 +10,10 @@ Vous pouvez télécharger le fichier zip et installer directement le thème dans
 
 N'oubliez pas d'éditer le config.yml et de renseigner vos les informations d'environnement suivantes:
 
-* password: xxx  
-* theme_id: "xxx"
-* store: xxx.myshopify.com
+- password: xxx
+- theme_id: "xxx"
+- store: xxx.myshopify.com
+
+## Bugfix
+
+Passage du scss au css suite aux nouvelles règles que shopify impose au niveau des thèmes
